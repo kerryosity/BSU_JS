@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <style type="text/css">
+
+    	body {
+    		font-family: sans-serif;
+    	}
+
+    	input {
+    		font-size: 16px;
+    		border-style: none;
+    		padding: 10px 0px;
+    		margin-right: 10px;
+    		outline: none;
+    		border-bottom: solid 1px;
+    		border-color: #444;
+    	}
+
+    	.wrapper {
+    		width: 500px;
+    		margin: 100px auto;
+    		text-align: center;
+    	}
+
+    	.button {
+    		font-size: 14px;
+    		cursor: pointer;
+    		color: white;
+    		border: none;
+    		outline: none;
+    		padding: 8px 20px; 
+    		border-radius: 20px;
+    		background-color: #0787BA;
+    		font-weight: 600;
+    		transition: all .3s;
+    	}
+
+    	.button:hover {
+    		background-color: #174C60; 
+    	}
+
+    	.answer_wrapper {
+    		margin-top: 50px;
+    		text-align: left;
+    	}
+
+    </style>
+    <script>
+
+    var arr = [];
+    var i = 0;
+
+    function findMaxValue(arr) {
+		var max = arr[0];
+
+		for(var i = 1; i < arr.length; i++) {
+		   var current = arr[i];
+		   if(current > max) {
+		      max = current;
+		   }
+		}
+		return max;
+    }
+
+    function findMinValue(arr) {
+		var min = arr[0];
+
+		for(var i = 1; i < arr.length; i++) {
+		   var current = arr[i];
+		   if(current < min) {
+		      min = current;
+		   }
+		}
+		return min;
+    }
+
+    function findArraySum(arr) {
+    	var sum = 0;
+
+    	for (var i = 0; i < arr.length; i++) sum += arr[i];	
+    	return sum;
+    }
+
+    function printSortedArray(arr) { // вывод массива
+		let output = document.getElementById("output_sorted");
+
+		for (let i = 0; i < arr.length; i++) {
+			output.innerHTML += arr[i] + '   ';
+		}
+    }
+
+    function bubbleSort(arr) { // сортировка массива
+        for (var i = 0, endI = arr.length - 1; i < endI; i++) {
+            for (var j = 0, endJ = endI - i; j < endJ; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var swap = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = swap;
+                }
+            }
+        }
+        return arr;
+    }
+
+    // Если поле ввода пустое
+    function Start() {
+    	console.log("Введенный массив: " + arr);
+
+    	bubbleSort(arr); // сортировка пузырьком
+    	
+        printSortedArray(arr); // вывод массива
+        console.log("Отсортированный массив: " + arr);
+
+        document.getElementById("max").innerHTML = "Максимум = " + findMaxValue(arr);
+        console.log("Max = " + findMaxValue(arr));
+
+        document.getElementById("min").innerHTML = "Минимум = " + findMinValue(arr);
+        console.log("Min = " + findMinValue(arr));
+
+		document.getElementById("sum").innerHTML = "Сумма = " + findArraySum(arr);
+		console.log("Sum = " + findArraySum(arr));
+    }
+
+    function add() { // добавление введенных чисел в массив
+    var input = document.getElementById("input").value;
+
+    if (input == "") Start()
+        else {
+            arr[i] = Number(input);
+			document.getElementById("output").innerHTML += arr[i] + ' ';
+            document.getElementById("input").value = "";
+            i++;
+        }    
+    }
+
+    document.addEventListener('keypress', function(e) {
+	    if (e.keyCode == 13) {
+		    location.reload();
+	    }
+	});
+
+    </script>
+
+ </head> 
+ <body>
+
+	<div class="wrapper">
+		<form action="" autocomplete="off">
+	        <input type="text" id="input" autofocus> 
+	        <input type="button" value="OK" onclick="add()" class="button">
+	    </form>
+
+	    <div class="answer_wrapper">
+	    	<p id="output">До сортировки: </p>
+		    <p id="output_sorted">После сортировки: </p>
+		    <p id="max"></p>
+		    <p id="min"></p>
+		    <p id="sum"></p>
+		    
+		    <footer style="opacity: .5; font-size: 14px; margin-top: 30px;">
+		    	Enter, чтобы начать сначала
+			</footer>
+	    </div>
+	</div>
+
+ </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab2 Hotyanovich</title>
+	<style type="text/css">
+
+		body {
+			background-color: #111;
+			color: white;
+			font-family: sans-serif;
+			font-weight: 100;
+		}
+
+		th, td {
+			border: solid 1px;
+			padding: 10px;
+		}
+
+		.wrapper {
+			margin: 0 auto;
+			max-width: 437px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+
+		<table cellspacing="0">
+			<thead>
+				<tr>
+					<th>№</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Age</th>
+					<th>Average mark</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+
+		<p>Средний балл по всем студентам: </p>
+
+	</div>
+
+	<script type="text/javascript">
+		
+		let studentArray = [
+			    {
+			    	firstName : "Fedya",
+			    	lastName : "Krasin",
+			    	age : 18,
+			    	averageMark : 8  
+			    },
+
+			    {
+			    	firstName : "Nastya",
+			    	lastName : "Malevich",
+			    	age : 18,
+			    	averageMark : 8.1  
+			    },
+
+			    {
+			    	firstName : "Erik",
+			    	lastName : "Hotyanovich",
+			    	age : 18,
+			    	averageMark : 7.4  
+			    },
+
+			    {
+			    	firstName: "Kolya",
+			    	lastName: "Lukashenko",
+			    	age: 5,
+			    	averageMark: 0
+			    },
+
+			    {
+			    	firstName: "Donald",
+			    	lastName: "Trump",
+			    	age: 74,
+			    	averageMark: 7
+			    }
+		]
+
+		var arraySize = studentArray.length;
+		var newColumn = [5];
+		var newColumnContent = [5];
+
+		// ----------------------- private module ----------------------- // 
+		var tableModule = (function () {
+
+			// count average mark among all students
+			var findAverageMark = function (studentArray, size) {
+				var sum = 0;
+				for (var i = 0; i < size; i++) 
+					sum += studentArray[i].averageMark;
+
+				return sum / size;
+			}			
+
+			// add a new student to the table
+			var addStudent = function () {
+				for (var i = 0; i < arraySize; i++) {
+					var table = document.querySelector("tbody");
+					var newRow = document.createElement('tr');   
+
+					for (var j = 0; j < 5; j++)
+						newColumn[j] = document.createElement('td');
+
+					newColumnContent[0] = document.createTextNode(i + 1);
+					newColumnContent[1] = document.createTextNode(studentArray[i].firstName);
+					newColumnContent[2] = document.createTextNode(studentArray[i].lastName);
+					newColumnContent[3] = document.createTextNode(studentArray[i].age);
+					newColumnContent[4] = document.createTextNode(studentArray[i].averageMark);
+
+					for (var j = 0; j < 5; j++) {
+						newColumn[j].appendChild(newColumnContent[j]);
+						newRow.appendChild(newColumn[j]);
+					}
+
+					table.appendChild(newRow);
+				}
+			}
+
+			return {
+				findAverageMark: findAverageMark,
+				addStudent: addStudent
+			}
+		}())
+		// --------------------- private module end --------------------- // 
+
+
+		tableModule.addStudent();
+		document.querySelector("p").innerHTML += tableModule.findAverageMark(studentArray, arraySize);
+
+	</script>
+
+</body>
+</html>
