@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lab4 Hotyanovich</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script defer src="script.js"></script>
+	<style type="text/css">
+		body {
+			background-color: #EDEEF0;
+			color: #111;
+			font-family: sans-serif;
+			font-weight: 100;
+		}
+
+		th, td {
+			border: solid 1px;
+			padding: 10px;
+		}
+
+		.delete_btn {
+			background-color: #ff8c8c;
+		}
+
+		.form_wrapper {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		table {
+			border: 0 solid black;
+			text-align: center;
+			border-collapse: collapse;
+			margin: 0 auto;
+			display: none;
+		}
+
+		.submit-button {
+			width: 330px;
+			border-radius: 30px;
+		    padding: 15px 20px;
+			font-weight: bold;
+			margin-top: 15px;
+		}
+
+		button:hover {
+			background-color: #d3c3b7;
+		}
+
+		button {
+			transition: all 0.3s;
+			cursor: pointer;
+			outline: none;
+			border: none;
+			background-color: cornsilk;
+			padding: 15px 20px;
+			width: 100px;
+		}
+
+		input {
+			width: 300px;
+			margin: 4px 0;
+			border-radius: 30px;
+			padding: 15px;
+			outline-style: none;
+			border-style: none;
+		}
+	</style>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Num</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Age</th>
+				<th>Average mark</th>
+				<th id="btn_column">Buttons</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<p id="info" style="text-align: center; font-size: 18px;">Try to add a student using the form below</p>
+
+	<div class="form_wrapper">
+		<form id="form" action="/" method="GET" autocomplete="off">
+			<div>
+				<input id="firstName" name="firstName" type="text" placeholder="First Name" required autofocus="true">
+			</div>
+			<div>
+				<input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
+			</div>
+			<div>
+				<input id="age" name="age" type="text" placeholder="Age" required>
+			</div>
+			<div>
+				<input id="averageMark" name="averageMark" type="text" placeholder="Average mark" required>
+			</div>
+			<button id="main_btn" class="submit-button" type="button" onclick="$.addStudent()">Add to the table</button>
+		</form>
+
+		<p style="color: red; display: none; font-size: 16px;" id="error_message">Error! Some fields are empty or incorrect values!</p>
+	</div>
+
+</body>
+</html>

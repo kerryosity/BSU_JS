@@ -1,0 +1,11 @@
+{
+  "students": [
+    {
+      "firstName": "Эрик",
+      "lastName": "не_бэрик",
+      "age": 18,
+      "averageMark": 8,
+      "id": 1
+    }
+  ]
+}
